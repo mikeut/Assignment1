@@ -105,7 +105,7 @@ class TaxationIntegrationTest {
 
     @Test
     void getTaxationForTraderNotFound() {
-        TaxationResponse response = restTemplate.getForObject("http://localhost:" + port + "/taxation?traderId=1&playedAmount=5&odd=1.5",
+        TaxationResponse response = restTemplate.getForObject("http://localhost:" + port + "/taxation?traderId=2&playedAmount=5&odd=1.5",
             TaxationResponse.class);
 
         Assertions.assertNull(response);
