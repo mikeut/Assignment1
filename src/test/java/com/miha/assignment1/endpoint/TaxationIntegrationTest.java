@@ -41,8 +41,7 @@ class TaxationIntegrationTest {
         var country = countryRepository.save(new CountryEntity("Country", "C", taxation));
         traderRepository.save(new TraderEntity(1L, "Trader", country));
 
-        TaxationResponse response = restTemplate.getForObject("http://localhost:" + port + "/taxation?traderId=1&playedAmount=5&odd=1.5",
-            TaxationResponse.class);
+        TaxationResponse response = call();
 
         Assertions.assertNotNull(response);
         assertEquals(6.75, response.possibleReturnAmount());
@@ -58,8 +57,7 @@ class TaxationIntegrationTest {
         var country = countryRepository.save(new CountryEntity("Country", "C", taxation));
         traderRepository.save(new TraderEntity(1L, "Trader", country));
 
-        TaxationResponse response = restTemplate.getForObject("http://localhost:" + port + "/taxation?traderId=1&playedAmount=5&odd=1.5",
-            TaxationResponse.class);
+        TaxationResponse response = call();
 
         Assertions.assertNotNull(response);
         assertEquals(5.5, response.possibleReturnAmount());
@@ -75,8 +73,7 @@ class TaxationIntegrationTest {
         var country = countryRepository.save(new CountryEntity("Country", "C", taxation));
         traderRepository.save(new TraderEntity(1L, "Trader", country));
 
-        TaxationResponse response = restTemplate.getForObject("http://localhost:" + port + "/taxation?traderId=1&playedAmount=5&odd=1.5",
-            TaxationResponse.class);
+        TaxationResponse response = call();
 
         Assertions.assertNotNull(response);
         assertEquals(7.25, response.possibleReturnAmount());
@@ -92,8 +89,7 @@ class TaxationIntegrationTest {
         var country = countryRepository.save(new CountryEntity("Country", "C", taxation));
         traderRepository.save(new TraderEntity(1L, "Trader", country));
 
-        TaxationResponse response = restTemplate.getForObject("http://localhost:" + port + "/taxation?traderId=1&playedAmount=5&odd=1.5",
-            TaxationResponse.class);
+        TaxationResponse response = call();
 
         Assertions.assertNotNull(response);
         assertEquals(6.5, response.possibleReturnAmount());
@@ -101,6 +97,11 @@ class TaxationIntegrationTest {
         assertEquals(7.5, response.possibleReturnAmountBefTax());
         assertEquals(1, response.taxAmount());
         assertEquals(1, response.taxRate());
+    }
+
+    private TaxationResponse call() {
+        return restTemplate.getForObject("http://localhost:" + port + "/taxation?traderId=1&playedAmount=5&odd=1.5",
+            TaxationResponse.class);
     }
 
     @Test

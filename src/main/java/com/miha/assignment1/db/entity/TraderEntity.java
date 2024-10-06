@@ -15,6 +15,9 @@ public class TraderEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @ManyToOne
+    @JoinColumn(name = "country_id")
+    private CountryEntity country;
 
     public TraderEntity() {
     }
@@ -40,10 +43,6 @@ public class TraderEntity {
     public void setName(String name) {
         this.name = name;
     }
-
-    @ManyToOne
-    @JoinColumn(name = "country_id")
-    private CountryEntity country;
 
     public CountryEntity getCountry() {
         return country;

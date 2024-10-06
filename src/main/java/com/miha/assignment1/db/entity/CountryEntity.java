@@ -18,6 +18,10 @@ public class CountryEntity {
 
     private String code;
 
+    @ManyToOne
+    @JoinColumn(name = "taxation_id")
+    private TaxationEntity taxation;
+
     public CountryEntity() {
     }
 
@@ -50,10 +54,6 @@ public class CountryEntity {
     public void setCode(String code) {
         this.code = code;
     }
-
-    @ManyToOne
-    @JoinColumn(name = "taxation_id")
-    private TaxationEntity taxation;
 
     public TaxationEntity getTaxation() {
         return taxation;
